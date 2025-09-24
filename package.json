@@ -1,0 +1,26 @@
+{
+  "name": "mar25-t2w03-advanced-express",
+  "version": "1.0.0",
+  "description": "Middleware, Git Collab Practice, Authentication and Authorisation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file-if-exists=.env ./src/index.js",
+    "dev": "node --env-file-if-exists=.env --watch-path=./ --watch-preserve-output ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GVasing/mar25-t2w03-advanced-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GVasing/mar25-t2w03-advanced-express/issues"
+  },
+  "homepage": "https://github.com/GVasing/mar25-t2w03-advanced-express#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
