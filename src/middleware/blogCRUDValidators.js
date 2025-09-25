@@ -18,12 +18,16 @@ function validateBlogTitle(request, response, next) {
     if (titleToCheck.trim().length < 3){
         errorArray.push("Title too short.  Should be at least 3 characters long of alphanumeric characters.")
     }
-    if (errorArray.length > 0) {
-        request.errors = [...errorArray];
-        return next(new Error("Errors occured in validation"));
-    } else {
-        next();
-    }
+
+    request.errors = [...errorArray];
+    next();
+
+    // if (errorArray.length > 0) {
+    //     request.errors = [...errorArray];
+    //     return next(new Error("Errors occured in validation"));
+    // } else {
+    //     next();
+    // }
 };
 
 module.exports = {
