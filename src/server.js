@@ -1,6 +1,9 @@
 const express = require("express");
-
+const { randomRouteStopper } = require("./middleware/exampleMiddleware");
 const app = express();
+
+// This allows us to receive JSON body data on requests
+app.use(express.json());
 
 /*
 
@@ -43,27 +46,6 @@ app.get(
     }
 );
 
-function randomRouteStopper(request, response, next){
-    // True/false on the random number generator as a coinflip
-    let coinFlipResult = Math.random() > 0.4;
-
-    if (coinFlipResult){
-        if (request.coinCount){
-            request.coinCount++
-        } else {
-            request.coinCount = 1;
-        }
-        // OR
-        // request.coinCount = (request.coinCount || 0) + 1;
-        next();
-    } else {
-        response.json({
-            message:"Coin flip finished.",
-            coinCount: request.coinCount || 1
-        });
-    }
-}
-
 app.get(
     "/weird-middleware-demo",
     randomRouteStopper,
@@ -91,6 +73,21 @@ app.get("/", (request, response) => {
         message: "Hello World"
     });
 });
+
+const blogRouter = require("./controllers/blogController.js");
+
+app.use("/blogs", blogRouter);
+
+// Error handler will catch any next() that contain an error as an argument
+app.use((error, request, response, next) => {
+
+    response.json({
+        message: "Something went wrong",
+        errorsArray: request.errors,
+        error: error.message
+    });
+
+})
 
 module.exports = {
     app
